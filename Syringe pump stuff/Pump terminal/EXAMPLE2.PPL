@@ -1,0 +1,69 @@
+;****************************************************************************
+;*** New Era Pump Systems Inc.
+;*** www.SyringePump.com
+;*** Model NE-1000 Multi-Phaser(tm) Programmable Syringe Pump
+;*** Example 2:  Repeated Dispenses with Suck Back
+;****************************************************************************
+
+dia 26.7
+al 1
+bp 1
+PF 0
+
+;****************
+phase
+fun rat
+rat 750 mh
+vol 2.0
+dir inf
+
+;****************
+phase
+fun rat
+rat 750 mh
+vol 0.25
+dir wdr
+
+;****************
+phase
+fun lps
+
+;****************
+phase
+fun lps
+
+;****************
+phase
+fun pas 90
+
+;****************
+phase
+fun lop 3
+
+;****************
+phase
+fun bep
+
+;****************
+phase
+fun pas 30
+
+;****************
+phase
+fun rat
+rat 750 mh
+vol 2.25
+dir inf
+
+;****************
+phase
+fun rat
+rat 750 mh
+vol 0.25
+dir wdr
+
+;****************
+phase
+fun lpe
+
+;****************

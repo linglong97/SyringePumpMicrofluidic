@@ -1,0 +1,72 @@
+;****************************************************************************
+;*** New Era Pump Systems Inc.
+;*** www.SyringePump.com
+;*** Model NE-1000 Multi-Phaser(tm) Programmable Syringe Pump
+;*** Example 5:  Control from a High-Low Pressure Sensor
+;****************************************************************************
+
+dia 26.7
+al 1
+bp 1
+PF 0
+
+;**************************************************
+phase
+fun out 0
+
+;****************
+phase
+fun rat
+rat 10 mh
+vol 0.005
+dir inf
+
+;****************
+phase
+fun evn 5
+
+;****************
+phase
+fun rat
+rat 10 mh
+vol 0.0
+dir inf
+
+;****************
+phase
+fun out 1
+
+;****************
+phase
+fun rat
+rat 10.0 mh
+vol 0.005
+dir inf
+
+;****************
+phase
+fun evn 1
+
+;****************
+phase
+fun lps
+
+;****************
+phase
+fun inc
+rat 1.0
+vol 0.25
+dir inf
+
+;****************
+phase
+fun lop 14
+
+;****************
+phase
+fun rat
+rat 25.0 mh
+vol 0.0
+dir inf
+
+;****************

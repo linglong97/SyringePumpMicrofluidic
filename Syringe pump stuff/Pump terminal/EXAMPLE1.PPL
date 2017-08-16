@@ -1,0 +1,31 @@
+;****************************************************************************
+;*** New Era Pump Systems Inc.
+;*** www.SyringePump.com
+;*** Model NE-1000 Multi-Phaser(tm) Programmable Syringe Pump
+;*** Example 1: 2 Step Rate
+;****************************************************************************
+
+dia 26.7
+al 1
+bp 1
+PF 0
+
+;****************
+phase START
+fun rat
+rat 500 mh
+vol 5
+dir inf
+
+;****************
+phase
+fun rat
+rat 2.5 mh
+vol 25
+dir inf
+
+;****************
+phase
+fun stp
+
+;****************

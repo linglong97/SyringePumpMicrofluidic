@@ -1,0 +1,74 @@
+;****************************************************************************
+;*** New Era Pump Systems Inc.
+;*** www.SyringePump.com
+;*** Model NE-1000 Multi-Phaser(tm) Programmable Syringe Pump
+;*** Example 7:  Dispensing with Complex Synchronizaiton
+;****************************************************************************
+
+dia 26.7
+al 1
+bp 1
+PF 0
+
+;**************************************************
+phase
+fun evr
+
+;****************
+phase
+fun out 1
+
+;****************
+phase
+fun rat
+rat 800 mh
+vol 5.0
+dir inf
+
+;****************
+phase
+fun out 0
+
+;****************
+phase
+fun evn 7
+
+;****************
+phase
+fun rat
+rat 800.0 mh
+vol 0.0
+dir inf
+
+;****************
+phase
+fun rat
+rat 1000 mh
+vol 0.25
+dir wdr
+
+;****************
+phase
+fun pas 1
+
+;****************
+phase
+fun if 7
+
+;****************
+phase
+fun pas 10
+
+;****************
+phase
+fun evn 1
+
+;****************
+phase
+fun pas 10
+
+;****************
+phase
+fun jmp 01
+
+;****************
