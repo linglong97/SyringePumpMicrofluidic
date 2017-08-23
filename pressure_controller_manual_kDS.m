@@ -6,18 +6,14 @@ s = daq.createSession('ni');
 
 addAnalogOutputChannel(s,'Dev3',0:1,'Voltage');
 addAnalogOutputChannel(s, 'Dev4', 0:1, 'Voltage');
-addAnalogOutputChannel(s, 'Dev5', 0, 'Voltage');
 d = daq.getDevices
 
-
 %%
 
-outputSingleScan(s,[0 0 0 0 0]);
+outputSingleScan(s,[0 0 0 0]);
 
 
 %%
-
-outputSingleScan(s,[0 0 0 0 0]);
 
 P_N = 0;
 P_S = 0;
@@ -62,64 +58,40 @@ St_W=uicontrol('Parent',MC_panel,'units','normalized','position',[0.55,0.25,0.05
 
 %% main loop, initialises the syringe pump as well
 
-% delete(instrfindall);
-%     s1=serial('COM6');
-%     set(s1,'Baud',9600)
-%     set(s1,'Terminator','CR')
-%     set(s1,'StopBits',2)
-%     fopen(s1);
-%     pause(1)
-%     fprintf(s1, 'mode w');
-%     pause(1)
-%     fprintf(s1,'dia 14.5');
-% %     pause(1)
-% %     fprintf(s1, 'RAT 0.01 MM');
-% %     pause(0.1)
-% %     fprintf(s1, 'RFR 0.0001 MM');
-% %     pause(1)
-% %     fprintf(s1,'RUN');
-% pause(1)
-%     fprintf(s1, 'ratew 20.1 ml/h');
-%     pause(1)
-%     fprintf(s1, 'volw 11.000 ml');
-%     pause(1)
-%     fprintf(s1, 'run');
-%     pause(1)
-%     fprintf(s1, ['ratew ' sprintf('%0.3f', round(total, 3)) ' ml/h'])
-%     
+delete(instrfindall);
+    s1=serial('COM6');
+    set(s1,'Baud',9600)
+    set(s1,'Terminator','CR')
+    set(s1,'StopBits',2)
+    fopen(s1);  
+    fprintf(s1,'DIA 14.5');
+    fprintf(s1, 'RAT 70 MH');
+    fprintf(s1, 'RFR 0.0001 MM');
+    fprintf(s1,'RUN');
+    
 while 1>0
-%    if
-%        run = 0
-%        fprintf(s1, 'run')
-       
-   
-   pause(0.01)
-            
+    
+    pause(0.01)
+              
             P_N = get(S_N,'value');set(St_N,'String',P_N);
             P_S = get(S_S,'value');set(St_S,'String',P_S);
             P_E = get(S_E,'value');set(St_E,'String',P_E);
             P_W = get(S_W,'value');set(St_W,'String',P_W);
-            
 
             V1=P_N;
             V2=P_S;
             V3=P_E;
             V4=P_W;
-            avg = (V1+V2+V3+V4)/4
-            s.outputSingleScan([V3,V2,V1,avg, V4]);
-            % s.outputSingleScan([V1,V2,V3,V4]); % set the voltages
+            s.outputSingleScan([V1,V2,V3,V4]); % set the voltages
             
-%              FE = V3; % flow rate in mLm
-%              FW = V4;
-%              total =(FE+FW)/2 % 
-%              % take the total output flow rate, suck that in
-%          
-% %              fprintf(s1,'RFR 5 MM');
-%                     
-%             
-%             fprintf(s1, ['ratew ' sprintf('%0.1f', round(60*total, 1)) ' ml/h'])
+             FN = V1*21/3; % flow rate in mLm
+             FS = V2*21/3;
+             total =(FN+FS)/2 % take the total output flow rate, suck that in
+         
+%              fprintf(s1,'RFR 5 MM');
+ 
+            fprintf(s1,['RFR ' sprintf('%0.4f',round(total,4)) ' MM']);
             
-      
             
             
      
@@ -128,23 +100,23 @@ end
 
 
 
-% %% just testing syringe pump
-%     delete(instrfindall);
-%     s1=serial('COM6');
-%     set(s1,'Baud',9600)
-%     set(s1,'Terminator','CR')
-%     set(s1,'StopBits',2)
-%     fopen(s1);  
-%     fprintf(s1,'DIA 14.5');
-%     fprintf(s1, 'RAT 70 MH');
-%     fprintf(s1, 'RFR 0.0001 MM'); % initialise with very low rate, but not 0
-%     fprintf(s1,'RUN');
-%     
-% while 1>0
-%     
-%     fprintf(s1,'RUN');
-%     
-%    
-% end
+%% just testing syringe pump
+    delete(instrfindall);
+    s1=serial('COM6');
+    set(s1,'Baud',9600)
+    set(s1,'Terminator','CR')
+    set(s1,'StopBits',2)
+    fopen(s1);  
+    fprintf(s1,'DIA 14.5');
+    fprintf(s1, 'RAT 70 MH');
+    fprintf(s1, 'RFR 0.0001 MM'); % initialise with very low rate, but not 0
+    fprintf(s1,'RUN');
+    
+while 1>0
+    
+    fprintf(s1,'RUN');
+    
+   
+end
 
 
